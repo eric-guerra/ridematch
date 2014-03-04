@@ -1,0 +1,17 @@
+{
+  "name": "ridematch-server",
+  "version": "1.0.0",
+  "description": "Ride-share matching API: Express + PostgreSQL/PostGIS",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "engines": { "node": ">=21" },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.12.0"
+  }
+}
