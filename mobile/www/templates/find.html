@@ -1,0 +1,34 @@
+<ion-view view-title="Find a ride">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">Pickup</div>
+        <select ng-model="vm.form.pickup" ng-options="p as p.name for p in vm.places">
+          <option value="">Choose…</option>
+        </select>
+      </label>
+      <a class="item item-icon-left positive" ng-click="vm.useMyLocation()"><i class="icon ion-navigate"></i> Use my location</a>
+      <label class="item item-input item-select">
+        <div class="input-label">Drop-off</div>
+        <select ng-model="vm.form.dropoff" ng-options="p as p.name for p in vm.places">
+          <option value="">Choose…</option>
+        </select>
+      </label>
+      <label class="item item-input"><span class="input-label">Earliest</span><input type="datetime-local" ng-model="vm.form.earliest"></label>
+      <label class="item item-input"><span class="input-label">Latest</span><input type="datetime-local" ng-model="vm.form.latest"></label>
+      <label class="item item-input"><span class="input-label">Seats</span><input type="number" min="1" max="7" ng-model="vm.form.seats"></label>
+    </div>
+    <div class="padding"><button class="button button-block button-assertive" ng-click="vm.search()">Search</button></div>
+
+    <div class="list">
+      <div class="item item-text-wrap" ng-repeat="m in vm.matches">
+        <h2>{{m.trip.driverName}} <span class="badge badge-assertive">{{m.score | number:0}}</span></h2>
+        <p>{{m.trip.originLabel}} → {{m.trip.destinationLabel}}</p>
+        <p>Pickup ~{{m.pickupEta | date:'shortTime'}} · {{m.detourKm}} km detour</p>
+        <button class="button button-small button-outline button-assertive" ng-disabled="m.requested" ng-click="vm.book(m)">
+          {{m.requested ? 'Requested' : 'Request seat'}}
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
