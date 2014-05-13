@@ -1,0 +1,14 @@
+<ion-view view-title="RideMatch" hide-nav-bar="true">
+  <ion-content class="padding login">
+    <h1 class="brand">RideMatch</h1>
+    <div class="list list-inset">
+      <label class="item item-input" ng-if="vm.register"><input type="text" placeholder="Your name" ng-model="vm.form.name"></label>
+      <label class="item item-input"><input type="email" placeholder="Email" ng-model="vm.form.email"></label>
+      <label class="item item-input"><input type="password" placeholder="Password" ng-model="vm.form.password"></label>
+    </div>
+    <button class="button button-block button-assertive" ng-click="vm.submit()">{{vm.register ? 'Create account' : 'Log in'}}</button>
+    <button class="button button-block button-clear button-dark" ng-click="vm.register = !vm.register">
+      {{vm.register ? 'I already have an account' : 'New here? Sign up'}}
+    </button>
+  </ion-content>
+</ion-view>
