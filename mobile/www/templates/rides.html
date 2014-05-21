@@ -1,0 +1,21 @@
+<ion-view view-title="My rides">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="vm.logout()">Log out</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher on-refresh="vm.refresh(); $broadcast('scroll.refreshComplete')"></ion-refresher>
+    <div class="item item-divider">Driving</div>
+    <div class="item" ng-repeat="t in vm.me.trips">
+      <h2>{{t.originLabel}} → {{t.destinationLabel}}</h2>
+      <p>{{t.departAt | date:'medium'}} · {{t.seatsTaken}}/{{t.seats}} seats · {{t.status}}</p>
+    </div>
+    <div class="item" ng-if="vm.loaded && !vm.me.trips.length">No trips posted.</div>
+
+    <div class="item item-divider">Riding</div>
+    <div class="item item-button-right" ng-repeat="b in vm.me.bookings">
+      <span class="badge-status {{b.status}}">{{b.status}}</span> {{b.createdAt | date:'short'}}
+      <button class="button button-small button-assertive button-outline" ng-if="b.status === 'requested' || b.status === 'accepted'" ng-click="vm.cancel(b)">Cancel</button>
+    </div>
+    <div class="item" ng-if="vm.loaded && !vm.me.bookings.length">No ride requests.</div>
+  </ion-content>
+</ion-view>
