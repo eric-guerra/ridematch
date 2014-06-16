@@ -1,0 +1,39 @@
+<div class="columns">
+  <section class="card">
+    <h2>Trips I'm driving</h2>
+    <p class="muted" ng-hide="vm.tripDetails.length">No upcoming trips. <a href="#!/offer">Offer one.</a></p>
+    <div class="trip" ng-repeat="t in vm.tripDetails">
+      <div class="row between">
+        <strong>{{t.originLabel || 'Start'}} → {{t.destinationLabel || 'Destination'}}</strong>
+        <button class="link danger" ng-click="vm.cancelTrip(t)">Cancel trip</button>
+      </div>
+      <div class="muted">{{t.departAt | date:'medium'}} · {{t.seatsTaken}}/{{t.seats}} seats taken</div>
+      <ul>
+        <li ng-repeat="b in t.bookings" class="row between">
+          <span>{{b.seats}} seat(s) · <span class="badge {{b.status}}">{{b.status}}</span></span>
+          <span>
+            <button ng-if="b.status === 'requested'" ng-click="vm.act(b, 'accept')">Accept</button>
+            <button ng-if="b.status === 'requested'" class="link" ng-click="vm.act(b, 'decline')">Decline</button>
+            <button ng-if="b.status === 'accepted'" ng-click="vm.act(b, 'complete')">Mark completed</button>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Rides I've requested</h2>
+    <p class="muted" ng-hide="vm.me.bookings.length">Nothing yet. <a href="#!/find">Find a ride.</a></p>
+    <ul>
+      <li ng-repeat="b in vm.me.bookings" class="row between">
+        <span><span class="badge {{b.status}}">{{b.status}}</span> {{b.createdAt | date:'short'}}</span>
+        <span>
+          <button ng-if="b.status === 'requested' || b.status === 'accepted'" class="link danger" ng-click="vm.act(b, 'cancel')">Cancel</button>
+          <span ng-if="b.status === 'completed' && !b.rated" class="stars">
+            <a href ng-repeat="s in [1,2,3,4,5]" ng-click="vm.rate(b, s)">★</a>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </section>
+</div>
