@@ -1,0 +1,23 @@
+<div class="layout">
+  <section class="card">
+    <h2>Offer a ride</h2>
+    <p class="muted">Click the map: first where you start, then where you're going.</p>
+    <form ng-submit="vm.submit()" class="stack">
+      <div class="row">
+        <input ng-model="vm.form.originLabel" placeholder="Start label (e.g. Katy)">
+        <input ng-model="vm.form.destinationLabel" placeholder="Destination label (e.g. Downtown)">
+      </div>
+      <label>Departure <input type="datetime-local" ng-model="vm.form.departAt" required></label>
+      <div class="row">
+        <label>Seats <input type="number" min="1" max="7" ng-model="vm.form.seats"></label>
+        <label>Max detour (km) <input type="number" min="0" max="50" step="0.5" ng-model="vm.form.maxDetourKm"></label>
+      </div>
+      <div class="row">
+        <label>Flexibility (min) <input type="number" min="0" max="120" ng-model="vm.form.flexMinutes"></label>
+        <label>Price per seat ($) <input type="number" min="0" step="0.5" ng-model="vm.form.price"></label>
+      </div>
+      <button class="primary">Post trip</button>
+    </form>
+  </section>
+  <rm-map class="card" points="vm.points" lines="vm.lines" pick="vm.pick(latlng)"></rm-map>
+</div>
