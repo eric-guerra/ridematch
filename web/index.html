@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ridematch">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RideMatch</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body ng-controller="NavCtrl as nav">
+  <header class="bar">
+    <a class="brand" href="#!/find">RideMatch</a>
+    <nav ng-if="nav.auth.isLoggedIn()">
+      <a href="#!/find">Find a ride</a>
+      <a href="#!/offer">Offer a ride</a>
+      <a href="#!/dashboard">My rides</a>
+      <a href ng-click="nav.logout()">Log out ({{nav.auth.user().name}})</a>
+    </nav>
+  </header>
+  <div class="flash" ng-show="nav.flash.text" ng-class="nav.flash.kind">{{nav.flash.text}}</div>
+  <main ng-view></main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular-route.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/map.js"></script>
+  <script src="/js/controllers.js"></script>
+</body>
+</html>

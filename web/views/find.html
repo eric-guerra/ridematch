@@ -1,0 +1,27 @@
+<div class="layout">
+  <section class="card">
+    <h2>Find a ride</h2>
+    <p class="muted">Click the map: first your pickup, then your drop-off.</p>
+    <form ng-submit="vm.search()" class="stack">
+      <label>Date <input type="date" ng-model="vm.form.date" required></label>
+      <div class="row">
+        <label>Earliest <input type="time" ng-model="vm.form.earliest" required></label>
+        <label>Latest <input type="time" ng-model="vm.form.latest" required></label>
+      </div>
+      <label>Seats <input type="number" min="1" max="7" ng-model="vm.form.seats"></label>
+      <button class="primary">Search</button>
+    </form>
+
+    <ul class="results">
+      <li ng-repeat="m in vm.results">
+        <div class="score">{{m.score | number:0}}</div>
+        <div class="grow">
+          <strong>{{m.trip.driverName}}</strong> <span class="muted" ng-if="m.trip.driverRating">★ {{m.trip.driverRating}}</span>
+          <div class="muted">Pickup ~{{m.pickupEta | date:'shortTime'}} · {{m.detourKm}} km detour · {{m.trip.seats - m.trip.seatsTaken}} seats · {{m.trip.priceCents | money}}</div>
+        </div>
+        <button ng-click="vm.book(m)" ng-disabled="m.requested">{{m.requested ? 'Requested' : 'Request'}}</button>
+      </li>
+    </ul>
+  </section>
+  <rm-map class="card" points="vm.points" lines="vm.lines" pick="vm.pick(latlng)"></rm-map>
+</div>

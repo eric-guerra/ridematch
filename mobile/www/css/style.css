@@ -1,0 +1,4 @@
+.login .brand { text-align: center; color: #e4572e; font-weight: 800; margin: 60px 0 30px; }
+.badge-status { padding: 2px 8px; border-radius: 10px; font-size: 12px; background: #ddd; }
+.badge-status.accepted { background: #d1fae5; } .badge-status.requested { background: #fef3c7; }
+.badge-status.cancelled, .badge-status.declined { background: #fee2e2; } .badge-status.completed { background: #dbeafe; }

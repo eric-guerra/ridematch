@@ -1,0 +1,27 @@
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.45 "Helvetica Neue", Arial, sans-serif; background: #f3f4f6; color: #1f2937; }
+.bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; background: #e4572e; color: #fff; }
+.bar a { color: #fff; text-decoration: none; margin-left: 16px; } .brand { font-weight: 800; font-size: 20px; margin-left: 0 !important; }
+main { padding: 16px; }
+.card { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.card.narrow { max-width: 380px; margin: 40px auto; }
+.layout { display: grid; grid-template-columns: 380px 1fr; gap: 16px; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 800px) { .layout, .columns { grid-template-columns: 1fr; } }
+.map { height: 560px; border-radius: 8px; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.row { display: flex; gap: 8px; align-items: center; } .row.between { justify-content: space-between; } .grow { flex: 1; }
+label { display: flex; flex-direction: column; font-size: 13px; color: #6b7280; gap: 4px; flex: 1; }
+input { padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font: inherit; }
+button { padding: 8px 14px; border-radius: 6px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; font: inherit; }
+button.primary { background: #e4572e; color: #fff; border-color: #e4572e; }
+button.link { border: 0; background: none; color: #2563eb; padding: 0 4px; } .danger { color: #dc2626 !important; }
+.muted { color: #6b7280; font-size: 13px; }
+.results { list-style: none; padding: 0; } .results li { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid #eee; }
+.score { width: 44px; height: 44px; border-radius: 50%; background: #fde7df; color: #e4572e; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+.trip { border-top: 1px solid #eee; padding: 10px 0; } ul { padding-left: 0; list-style: none; }
+.badge { padding: 1px 8px; border-radius: 10px; font-size: 12px; background: #e5e7eb; }
+.badge.accepted { background: #d1fae5; } .badge.requested { background: #fef3c7; } .badge.cancelled, .badge.declined { background: #fee2e2; } .badge.completed { background: #dbeafe; }
+.stars a { color: #f59e0b; text-decoration: none; font-size: 18px; }
+.flash { position: fixed; top: 64px; right: 16px; padding: 10px 16px; border-radius: 8px; background: #111827; color: #fff; z-index: 1000; }
+.flash.error { background: #dc2626; } .flash.success { background: #059669; }

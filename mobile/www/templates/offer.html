@@ -1,0 +1,23 @@
+<ion-view view-title="Offer a ride">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">From</div>
+        <select ng-model="vm.form.origin" ng-options="p as p.name for p in vm.places"><option value="">Choose…</option></select>
+      </label>
+      <a class="item item-icon-left positive" ng-click="vm.useMyLocation()"><i class="icon ion-navigate"></i> Start from my location</a>
+      <label class="item item-input item-select">
+        <div class="input-label">To</div>
+        <select ng-model="vm.form.destination" ng-options="p as p.name for p in vm.places"><option value="">Choose…</option></select>
+      </label>
+      <label class="item item-input"><span class="input-label">Departure</span><input type="datetime-local" ng-model="vm.form.departAt"></label>
+      <div class="item range range-assertive">
+        Seats {{vm.form.seats}} <input type="range" min="1" max="7" ng-model="vm.form.seats" ng-change="vm.form.seats = +vm.form.seats">
+      </div>
+      <div class="item range range-assertive">
+        Detour {{vm.form.maxDetourKm}} km <input type="range" min="0" max="20" ng-model="vm.form.maxDetourKm" ng-change="vm.form.maxDetourKm = +vm.form.maxDetourKm">
+      </div>
+    </div>
+    <div class="padding"><button class="button button-block button-assertive" ng-click="vm.submit()">Post trip</button></div>
+  </ion-content>
+</ion-view>
