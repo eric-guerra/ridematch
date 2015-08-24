@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ridematch
+      POSTGRES_USER: ridematch
+      POSTGRES_PASSWORD: ridematch
+    volumes:
+      - ./server/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    ports: ["5432:5432"]
+  api:
+    image: node:20-alpine
+    working_dir: /app/server
+    command: sh -c "npm install --omit=dev && node src/index.js"
+    volumes: ["./:/app"]
+    environment:
+      DATABASE_URL: postgres://ridematch:ridematch@db:5432/ridematch
+      JWT_SECRET: change-me-in-production
+    ports: ["3000:3000"]
+    depends_on: [db]
